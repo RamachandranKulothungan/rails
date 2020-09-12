@@ -10,6 +10,8 @@ class HomeController < ApplicationController
         #try to render default view
         #views/controllername/index.html.erb
         #render plain:"Index"
+        @categories = Category.all
+        @tags = Tag.all
         @post = ["post1", "post2"]
     end
     def contact

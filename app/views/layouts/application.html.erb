@@ -12,16 +12,14 @@
   <body>
    <div class = "container">
       <%= render partial: "layouts/topmenu"%>
-      
-      
-
       <p class = "notice"><%= notice%></p>
       <div class = "row">
         <div class = "col-md-9">
           <%= yield %>
         </div>
         <div class = "col-md-3">
-          <h5>Categories</h5>
+          <%= render "layouts/categories", categories: @categories%>
+          <%= render "layouts/tags", tags: @tags%>
         </div>
       </div>
     </div>
