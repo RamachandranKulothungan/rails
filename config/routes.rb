@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get "home/read/:id", to: "home#read", :as => :post_read
+  get "home/:tag/posts", to: "home#tag_search", :as => :tag_search
+  get "home/posts/:category", to: "home#category_search", :as => :category_search
   resources :posts
   get 'tags/index'
   resources :categories

@@ -1,6 +1,6 @@
-<%if posts_p%>
+<%if posts%>
     <h5>Published Posts</h5>
-    <% posts_p.each do|post|%>
+    <% posts.each do|post|%>
         <div class = "card mb-3">
             <div class = "card">
                 <div class = "card-body">  
@@ -11,14 +11,21 @@
             <div class = "card-footer">
                 <h6>Published at <%=time_ago_in_words(post.created_at)%></h6>
                 <h6><%= link_to "read more", post_read_path(post)%></h6>
-                <div>
-                <span>
-                <% post.tags.each do|tag|%>
-                <%=tag.name%>
-                <%end%>
-                </span>
+                <div class = "d-flex justify-content-start">
+                    <% post.tags.each do|tag|%>
+                    <span class = "badge badge-info mr-3">
+                        <%= link_to tag.name, tag_search_path(tag.name)%>
+                    </span>
+                    <%end%>
+                </div>
+                <div class = "d-flex justify-content-end">
+                    <span class = "badge badge-warning mr-3">
+                        <%= link_to post.category.name, category_search_path(post.category.name)%>
+                    </span>
                 </div>
             </div>
         </div>
     <%end%>
+    <%else%>
+    <h5>No Published Posts Yet</h5>
 <%end%>
