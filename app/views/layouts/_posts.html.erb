@@ -1,0 +1,24 @@
+<%if posts_p%>
+    <h5>Published Posts</h5>
+    <% posts_p.each do|post|%>
+        <div class = "card mb-3">
+            <div class = "card">
+                <div class = "card-body">  
+                    <h4><%=post.title%></h4>
+                    <h6><%= post.body.truncate(300) %></h6>
+                </div>
+            </div>
+            <div class = "card-footer">
+                <h6>Published at <%=time_ago_in_words(post.created_at)%></h6>
+                <h6><%= link_to "read more", post_read_path(post)%></h6>
+                <div>
+                <span>
+                <% post.tags.each do|tag|%>
+                <%=tag.name%>
+                <%end%>
+                </span>
+                </div>
+            </div>
+        </div>
+    <%end%>
+<%end%>

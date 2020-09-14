@@ -2,7 +2,7 @@
     <h5>Categories</h5>
     <% categories.each do|category|%>
     <ul>  
-        <li><%=category.name%>(<%= category.posts.count%>)% </li>
+        <li><%=category.name%>(<%= category.posts.size%>) </li>
     </ul>
     <%end%>
 <%end%>
