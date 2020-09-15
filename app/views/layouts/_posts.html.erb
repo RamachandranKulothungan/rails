@@ -1,5 +1,5 @@
-<%if posts%>
-    <h5>Published Posts</h5>
+<%if posts.size != 0%>
+    <h5>Published Posts : <%=posts.first.category.name%></h5>
     <% posts.each do|post|%>
         <div class = "card mb-3">
             <div class = "card">
@@ -10,6 +10,7 @@
             </div>
             <div class = "card-footer">
                 <h6>Published at <%=time_ago_in_words(post.created_at)%></h6>
+                <h6>by <%=post.user.email%></h6>
                 <h6><%= link_to "read more", post_read_path(post)%></h6>
                 <div class = "d-flex justify-content-start">
                     <% post.tags.each do|tag|%>

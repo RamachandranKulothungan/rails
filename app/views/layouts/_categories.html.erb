@@ -1,8 +1,12 @@
 <%if categories%>
     <h5>Categories</h5>
     <% categories.each do|category|%>
-    <ul>  
-        <li><%= link_to category.name, category_search_path(category.name)%>(<%= category.posts.size%>) </li>
+    <ul> 
+        <%if category.posts.size != 0%> 
+        <li><%= link_to category.name, category_search_path(category.slug)%>(<%= category.posts.size%>) </li>
+        <%else%>
+        <li><%=category.name%>(<%= category.posts.size%>)</li>
+        <%end%>
     </ul>
     <%end%>
 <%end%>

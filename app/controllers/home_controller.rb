@@ -23,13 +23,12 @@ class HomeController < ApplicationController
             result = Tag.where(name: params[:tag])
             @posts = result.blank? ? [] : result.first.posts
         end
-
         render "home/index"
     end
 
     def category_search
         if params.has_key? (:category)
-            @posts = Category.where(name: params[:category]).first.posts
+            @posts = Category.where(slug: params[:category]).first.posts
         end
         render "home/index"
     end

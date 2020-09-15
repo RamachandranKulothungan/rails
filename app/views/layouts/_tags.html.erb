@@ -1,8 +1,8 @@
 <%if tags%>
     <h5>Tags</h5>
     <% tags.each do|tag|%>
-    <ul>  
-        <li><%= link_to tag.name, tag_search_path(tag.name)%>(<%= tag.posts.size %>)</li>
+    <ul>
+        <li><%= link_to_if tag.posts.size >0, tag.name, tag_search_path(tag.name)%>(<%= tag.posts.size %>)</li>
     </ul>
     <%end%>
 <%end%>
