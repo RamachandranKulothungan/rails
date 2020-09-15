@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_authorization?, only: [:edit, :update, :destroy]
   # GET /posts
   # GET /posts.json
   def index
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post.user = current_user
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -72,4 +72,15 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :published, :category_id, :all_tags, tag_ids:[])
     end
+    def check_authorization?
+      unless authorize?(@post)
+        flash[:notice] = "Unauthorized"
+        redirect_back(fallback_location: root_path)
+      end
+    end
+    def authorize? (post)
+      current_user.id == post.user.id
+    end
+
+    helper_method :authorize?
 end

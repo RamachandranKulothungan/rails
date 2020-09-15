@@ -32,12 +32,17 @@ rc = User.create(
     password: "12345678",
     password_confirmation: "12345678"
 )
+ramu = User.create(
+    email: "ramu.kulo@gmail.com",
+    password: "12345678",
+    password_confirmation: "12345678"
+)
 
 10.times do |i|
     Post.create(
         title: "Post #{i}",
         body: "Post #{i} goes here...",
-        user: rc,
+        user:  i % 2 == 0 ? rc : ramu,
         published: true,
         tags: i % 2 == 0 ? [tag_rails, tag_js]: [tag_ruby, tag_react],
         category_id: i % 2 == 0 ? cat_j.id : cat_prg.id
